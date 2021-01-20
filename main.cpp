@@ -5,6 +5,39 @@
 #include <algorithm>
 using namespace std;
 
+void quicksort(std::vector<int> &vec, int L, int R)
+{
+    int i, j, mid, piv;
+    i = L;
+    j = R;
+    mid = L + (R - L) / 2;
+    piv = vec[mid];
+    
+    while (i<R || j>L)
+    {
+        while (vec[i] < piv)
+            i++;
+        while (vec[j] > piv)
+            j--;
+        
+        if (i <= j)
+        {
+            swap(vec, i, j);
+            i++;
+            j--;
+        }
+        else
+            {
+            if (i < R)
+                quicksort(vec, i, R);
+            if (j > L)
+                quicksort(vec, L, j);
+            return;
+        }
+    }
+}
+
+
 int main()
     {
 //    Задача 1.
@@ -65,23 +98,13 @@ int main()
         }
         cout<<"\n"<<"Iteraciy: "<<l<<endl;
         
-//      Quick
-        /*
-        n=0;
-        p=0;
-        int j=29;
-        for (int i=0; i<600;i++){
-            p++;
-            if (p==29) p=0;
-            if (qwer2[p]>=qwer2[j])
-
-        n++;
-        }
-        
-        for (int p=0;p<30;p++){
-            cout<<qwer2[p]<<" ";}
-        cout<<endl<<n<<endl;
-        */
+quicksort(qwer2, 0, size.qwer2() - 1);
+    
+    for(int i : vec1)
+    {
+        cout << i << endl;
+    }
+    
        return 0;
     }
     
