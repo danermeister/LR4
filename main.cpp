@@ -5,7 +5,7 @@
 #include <algorithm>
 using namespace std;
 
-void quicksort(std::vector<int> &vec, int L, int R)
+void quicksort(vector<int> &vec, int L, int R)
 {
     int i, j, mid, piv;
     i = L;
