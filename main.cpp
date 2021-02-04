@@ -1,68 +1,63 @@
-#include <iostream>
-#include <string>
-#include <vector>
 #include <functional>
 #include <algorithm>
+#include <iostream>
+#include <string>
+#include <ctime>
+#include <vector>
 using namespace std;
 
 void newVec(vector<int>& vec) {
-    int j;
-    for (int i = 0; i < 30; i++)
-    {
-        j = rand() % 200 - 100;
-        vec.push_back(j);
-
+    int k;
+    srand(time(nullptr));
+    for (int i = 0; i < 30; ++i) {
+         k = rand() % 21 - 10;
+         vec.push_back(k);
     }
 }
 
 void printVec(vector<int>& vec) {
-    for (int i = 0; i < vec.size(); i++) {
+    for (int i = 0; i < vec.size(); i++)
+    {
         cout << vec[i] << " ";
     }
     cout << endl;
 }
 
 
-void bubbleSort(vector<int>& vec) {
+void bubbleSort(vector<int>& vec)
+{
     int a = 0;
-    int p = 1;
-    for (int i = 0; i < 30; i++)
-    {
-        if (vec[p] > vec[p + 1])
+    for (int i = 0; i < vec.size(); i++) {
+        for (int i = 0; i < vec.size() - 1; i++) 
         {
-            a = vec[p + 1];
-            vec[p + 1] = vec[p];
-            vec[p] = a;
-            i = 0;
-        }
-        p++;
 
-        if (p == 29) p = 0;
-
-
-    }
-}
-
-void insertSort(vector<int>& vec) {
-    int a = 0;
-    int p = 1;
-    for (int i = 0; i < 30; i++)
-    {
-        if (vec[p - 1] > vec[p])
-        {
-            a = vec[p];
-            for (int n = 0; n < p; n++) {
-                vec[p - n] = vec[p - n - 1];
+            if (vec[a] > vec[a + 1])
+            {
+                swap(vec[a], vec[a + 1]);
+                a++;
             }
-            vec[0] = a;
-            i = 0;
-        }
-        p++;
+            else a++;
 
-        if (p == 30) p = 1;
+        }
+        a = 0;
     }
 }
-    
+
+void insertSort(vector<int>& vec)
+{
+    for (int i = 0; i < 30 - 1; i++) 
+    {
+        int j = i + 1;
+        int key = vec[j];
+        while (i >= 0 && vec[i] > key) 
+        {
+            vec[i + 1] = vec[i];
+            i--;
+        }
+            vec[i + 1] = key;
+    }
+}
+
 void quickSort(vector<int>& vec, int low, int high)
 {
     int i = low;
@@ -91,7 +86,7 @@ void quickSort(vector<int>& vec, int low, int high)
         quickSort(vec, i, high);
 }
 
-   
+
 
 
 int main()
@@ -99,19 +94,19 @@ int main()
     vector<int> qwer1;
     vector<int> qwer2;
     vector<int> qwer3;
-    
+
     cout << "Bubble sort:" << endl;
     newVec(qwer1);
     printVec(qwer1);
     bubbleSort(qwer1);
     printVec(qwer1);
-   
+
     cout << "Insert sort:" << endl;
     newVec(qwer2);
     printVec(qwer2);
     insertSort(qwer2);
     printVec(qwer2);
-    
+
     cout << "Quick sort:" << endl;
     newVec(qwer3);
     printVec(qwer3);
